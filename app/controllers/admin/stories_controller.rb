@@ -1,10 +1,10 @@
 class Admin::StoriesController < AdminController
   def index
-    @stories = Story.all
+#    @stories = Story.all
   end
   
   def new
-    @story = Story.new
+#    @story = Story.new
   end
   
   def create
