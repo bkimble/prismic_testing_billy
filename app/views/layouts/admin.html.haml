@@ -1,0 +1,20 @@
+%html
+  %head
+    %title Live in Levis
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
+    = javascript_include_tag 'application', 'data-turbolinks-track' => false
+    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
+    = csrf_meta_tags
+
+  %body
+    = render 'admin/navigation'
+    
+    - if flash[:error]
+      = flash[:error]
+    - if flash[:notice]
+      = flash[:notice]
+    
+    .row
+      .col-md-12
+        = yield
+

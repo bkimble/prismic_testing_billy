@@ -1,0 +1,83 @@
+= bootstrap_form_for([:admin,@story], {role: 'form', multipart: true}) do |f|
+  .row.well
+    .col-md-4
+      = f.text_field(:organization)
+      = f.text_field(:tagline)
+      = f.text_area(:description)
+            
+      = f.form_group :active do
+        = f.label "Active"
+        = f.radio_button(:active, false, label: 'Inactive', inline: true)
+        = f.radio_button(:active, true, label: 'Active', inline: true)
+      
+
+      = f.form_group :causes do
+        = f.select(:causes, causes_list, {include_blank: false, include_hidden: false}, {multiple: true})
+
+      = f.form_group :address do
+        = f.fields_for :address do |a|
+          = a.text_field :city
+          = a.text_field :country
+          = a.text_field :province
+          = a.text_field :street1
+          = a.text_field :street2
+          = a.text_field :zip
+      
+
+    .col-md-4
+    
+      = image_tag(f.object.logo_url)
+      = f.file_field(:logo)
+      
+      = f.text_field(:geography)      
+      = f.text_field(:budget)
+    
+      = f.text_field(:latitude)
+      = f.text_field(:longitude)      
+      
+      = f.text_field(:salt)
+
+      = f.text_field(:charitynavigator)
+      = f.text_field(:code)
+      = f.form_group :complete do
+        = f.label "Complete"
+        = f.radio_button(:complete, false, label: 'No', inline: true)
+        = f.radio_button(:complete, true, label: 'Yes', inline: true)
+    
+      = f.text_field(:hash)
+    
+      = f.text_field(:updated)
+      = f.text_field(:website)
+      = f.text_field(:year)
+    .col-md-4
+      = f.form_group :complete do
+        = f.label "IRS"
+        = f.radio_button(:irs, false, label: 'No', inline: true)
+        = f.radio_button(:irs, true, label: 'Yes', inline: true)
+
+      = f.text_field(:irs_number)
+    
+      = f.text_field(:contact_first_name)
+      = f.text_field(:contact_last_name)
+      
+      = f.text_field(:email)
+
+      = f.text_field(:guidestar)
+            
+      = f.text_field(:tagline)
+
+      = f.form_group :terms do
+        = f.label "Terms"
+        = f.radio_button(:terms, false, label: 'No', inline: true)
+        = f.radio_button(:terms, true, label: 'Yes', inline: true)
+
+      = f.text_field(:title)
+      
+  = f.submit
+
+:javascript
+$(function() {
+  $("select").multiselect({
+    selectedList: 10 // 0-based index
+  });  
+});
